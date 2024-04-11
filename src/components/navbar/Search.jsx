@@ -32,14 +32,20 @@ const Search = () => {
           <IoMdSearch className="text-gray-500 group-hover:text-primary absolute top-1/2 -translate-y-1/2 right-3" />
         </a>
       </div>
-      <button
-        onClick={() => handleModal()}
-        className="bg-gradient-to-r from-primary to-secondary transition-all duration-200 text-white py-1 px-4 rounded-md 
+      <div className="relative ">
+        <button
+          onClick={() => handleModal()}
+          className=" bg-gradient-to-r from-primary to-secondary transition-all duration-200 text-white p-2 rounded-xl
         flex items-center gap-3 group">
-        <span>Cart </span>
-        <span>{amount}</span>
-        <FaCartShopping className="text-xl text-white drop-shadow-md  cursor-pointer" />
-      </button>
+          <span
+            className={`${
+              amount ? "bg-red-500" : "bg-transparent"
+            }text-white  w-5 h-5 left-2 rounded-full -top-3  absolute cursor-pointer `}>
+            {amount}
+          </span>
+          <FaCartShopping className="text-xl text-white drop-shadow-md  cursor-pointer" />
+        </button>
+      </div>
       <ThemeButton />
     </div>
   );

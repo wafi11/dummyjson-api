@@ -44,7 +44,7 @@ const Modal = () => {
   return (
     <>
       {modal && (
-        <div className="">
+        <div className="" onClick={onClose}>
           <div className="realtive h-screen w-screen fixed top-0 left-0 bg-black/50 z-50 backdrop-blur-sm ">
             <div
               className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-md
@@ -89,7 +89,7 @@ const Modal = () => {
                     </div>
                     <div className="flex flex-col gap-6 px-2">
                       <CloseSharp onClick={() => removeCart(item)} />
-                      <p>$ {(item.amount * item.price).toFixed(2)}</p>
+                      <p>Rp. {(item.amount * item.price).toFixed(3)}</p>
                     </div>
                   </div>
                 ))}

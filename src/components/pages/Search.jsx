@@ -3,20 +3,23 @@ import { NavLink, useParams, useSearchParams } from "react-router-dom";
 import useFakeStore from "../hooks/FakeStoreApi";
 import Products from "../products";
 import { FaStar } from "react-icons/fa";
+import { useCartSlice } from "../hooks/CartSlice";
 
 const SearchPage = () => {
   const { fetchProductSearch, searchProducts } = useFakeStore();
+  const { cart, addToCart } = useCartSlice();
   const [searchParams] = useSearchParams();
   for (const entry of searchParams.entries()) {
     const [param, value] = entry;
   }
-  console.log(Object.fromEntries([...searchParams]));
 
   const query = searchParams.get("q");
   useEffect(() => {
     fetchProductSearch("search", `q=${searchParams.get("q")}`);
   }, []);
-  console.log(searchProducts);
+  const handleClikBuy = (item) => {
+    addToCart(item);
+  };
   return (
     <div className="pt-14 pb-12 bg-neutral-100">
       <div className="container">
@@ -43,6 +46,13 @@ const SearchPage = () => {
                   <div className="flex items-center gap-1">
                     <FaStar className="text-yellow-400" />
                     <span>{data.rating}</span>
+                  </div>
+                  <div>
+                    <button
+                      onClick={() => handleClikBuy(data)}
+                      className="dark:bg-orange-700 bg-slate-500 hover:scale-105 duration-300 text-white py-1 px-4 rounded-full mt-4 group-hover:bg-white group-hover:text-yellow-500">
+                      Order Now
+                    </button>
                   </div>
                 </div>
               </div>
